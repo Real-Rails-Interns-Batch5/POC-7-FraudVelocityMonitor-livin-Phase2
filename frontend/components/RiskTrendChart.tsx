@@ -19,7 +19,7 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
         Risk Score Trend (24h)
       </div>
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={formattedData} margin={{ top: 5, right: 30, left: 0, bottom: 5 }}>
+        <LineChart data={formattedData} margin={{ top: 5, right: 60, left: 50, bottom: 5 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
           <XAxis 
             dataKey="time" 
@@ -27,9 +27,16 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
             style={{ fontSize: '12px' }}
           />
           <YAxis 
-            stroke="#6b7280" 
-            style={{ fontSize: '12px' }}
+            stroke="#38BDF8" 
+            style={{ fontSize: '11px' }}
             domain={[0, 100]}
+            width={35}
+          />
+          <YAxis 
+            yAxisId="right"
+            stroke="#818CF8" 
+            style={{ fontSize: '11px' }}
+            width={35}
           />
           <Tooltip 
             contentStyle={{ 

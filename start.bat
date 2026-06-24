@@ -38,7 +38,7 @@ echo Installing backend dependencies...
 pip install -q -r requirements.txt
 
 REM Start backend server in new window
-start "Fraud Velocity Monitor - Backend" cmd /k "python app.py"
+start "Fraud Velocity Monitor - Backend" cmd /k "uvicorn app:app --host 0.0.0.0 --port 8000 --reload"
 echo ✅ Backend started
 
 cd ..
