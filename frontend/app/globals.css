@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #030712;
+  color: #e5e7eb;
+  font-family: 'Inter', 'Geist Sans', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #38BDF8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+.cyan-glow {
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.5), inset 0 0 12px rgba(56, 189, 248, 0.1);
+}
+
+.glassmorphism {
+  background: rgba(11, 17, 23, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(31, 41, 55, 0.5);
+}
+
+.rails-card {
+  background-color: #0B1117;
+  border: 1px solid #1F2937;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.rails-button {
+  background-color: #38BDF8;
+  color: #030712;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.rails-button:hover {
+  background-color: #0ea5e9;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.rails-button:active {
+  transform: scale(0.98);
+}
+
+.velocity-alert {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
