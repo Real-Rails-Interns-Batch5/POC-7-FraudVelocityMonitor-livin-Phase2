@@ -94,6 +94,90 @@ Frontend will run on `http://localhost:3000`
 **Section E: Download**
 - Download sample dataset as JSON
 
+## 📸 Screenshots
+
+### 1. Dashboard Header
+![Dashboard Header](screenshots/01-header-dashboard.png)
+Main header displaying "Fraud Velocity Monitor" title with real-time status indicator.
+
+### 2. Risk Trend Chart (24-Hour View)
+![Risk Trend Chart](screenshots/02-risk-trend-chart.png)
+Line chart displaying dual metrics:
+- **Left Y-Axis (Cyan):** Average Risk Score (0-100%)
+- **Right Y-Axis (Indigo):** High Risk Count (events)
+- **X-Axis:** Hourly timestamps over 24 hours
+- Real-time trend visualization with smooth interpolation
+
+### 3. Analytics KPI Cards
+![Analytics Cards](screenshots/03-analytics-kpi-cards.png)
+Four key performance indicators displayed in card format:
+- **🚨 Flagged Events (24H):** 1,842 transactions (Rate: 14.8%)
+- **🛑 Blocked Transactions:** 127 transactions (445 high-risk)
+- **📊 Avg Risk Score:** 52.3 (Current 24h baseline)
+- **🌍 Regions Affected:** 8 countries (5411 Grocery Stores)
+
+### 4. Velocity Rules & Review Queue
+![Rules and Queue](screenshots/04-velocity-rules-review-queue.png)
+
+**Left Panel - Velocity Detection Rules:**
+1. **Same Card 3 Transactions in 5 Min** - 234 violations (HIGH priority)
+2. **Same Card 10 Transactions in 1 Hour** - 512 violations (MEDIUM priority)
+3. **Same Device 5 Different Merchants in 10 Min** - 89 violations (HIGH priority)
+
+**Right Panel - Review Queue (4 items):**
+- **TechStore NYC** - Risk 92 (PENDING_REVIEW, HIGH priority)
+- **Global Shopping Online** - Risk 78 (PENDING_REVIEW, HIGH priority)
+- **Electronics Depot** - Risk 65 (UNDER_INVESTIGATION, MEDIUM priority)
+
+### 5. Fraud Events Table
+![Fraud Events Table](screenshots/05-fraud-events-table.png)
+Complete transaction log with 6 events showing:
+
+| Merchant | Amount | Risk | Velocity | Anomaly | Status | Actions |
+|----------|--------|------|----------|---------|--------|---------|
+| TechStore NYC | $2,450.00 | HIGH | EXCEEDED | TRANSACTION_VELOCITY | FLAGGED | Approve/Block |
+| Global Shopping Online | $1,850.50 | HIGH | ELEVATED | GEOGRAPHIC_MISMATCH | FLAGGED | Approve/Block |
+| Electronics Depot | $3,200.00 | MEDIUM | NORMAL | UNUSUAL_AMOUNT | UNDER_REVIEW | — |
+| Luxury Goods Ltd | $5,600.00 | HIGH | EXCEEDED | CROSS_BORDER_VELOCITY | BLOCKED | — |
+| Gas Station Express | $65.00 | LOW | NORMAL | — | APPROVED | — |
+| Payment Processor Test | $999.99 | MEDIUM | NORMAL | ROUND_AMOUNT | UNDER_REVIEW | — |
+
+### 6. Filters & Controls Panel
+![Filters Panel](screenshots/06-filters-panel.png)
+
+**Risk Level Selector:**
+- ☐ LOW (< 30 risk score)
+- ☐ MEDIUM (30-60 risk score)
+- ☑️ HIGH (> 60 risk score) — *Selected*
+- ☑️ APPROVED — *Selected*
+
+**Status Selector:**
+- ☑️ APPROVED
+- ☐ FLAGGED
+- ☐ BLOCKED
+- ☐ UNDER_REVIEW
+
+**Buttons:**
+- **Apply Filters** - Cyan button to refresh table with selected criteria
+- **Download Sample Data** - Cyan button to export mock_data.json
+
+### 7. Educational Content Sections
+![Educational Content](screenshots/07-educational-content.png)
+
+**Why This Matters:**
+"Fraud velocity rules detect abnormal transaction patterns within seconds. High-velocity attacks—multiple transactions in short time windows—are a primary fraud vector across payment rails. This system monitors real-time transaction streams and flags velocity breaches before cards are compromised at scale."
+
+**Who Controls the Rail:**
+"Payment rail governance involves card networks (Visa/Mastercard), issuing banks, merchant acquirers, and third-party processors. Fraud detection is a shared responsibility: networks set velocity thresholds; banks approve/deny transactions; processors execute real-time rules; merchants provide merchant category codes (MCCs) for context."
+
+### 8. Full Dashboard Layout (70/30 Split)
+![Full Dashboard](screenshots/08-full-dashboard-layout.png)
+Complete dashboard showing:
+- **Left (70%):** Risk trend chart, velocity rules, review queue, fraud events table
+- **Right (30%):** Intelligence sidebar with analytics cards, educational content, filters
+- **Color Scheme:** Real Rails DNA (#030712 background, #38BDF8 cyan accents, #818CF8 indigo)
+- **Layout:** Responsive design maintaining 70/30 split across all screen sizes
+
 ## 📡 Mock Data
 
 All data is pre-generated in `/backend/mock_data.json` with:
