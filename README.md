@@ -96,11 +96,7 @@ Frontend will run on `http://localhost:3000`
 
 ## 📸 Screenshots
 
-### 1. Dashboard Header
-![Dashboard Header](screenshots/01-header-dashboard.png)
-Main header displaying "Fraud Velocity Monitor" title with real-time status indicator.
-
-### 2. Risk Trend Chart (24-Hour View)
+### 1. Risk Trend Chart (24-Hour View)
 ![Risk Trend Chart](screenshots/02-risk-trend-chart.png)
 Line chart displaying dual metrics:
 - **Left Y-Axis (Cyan):** Average Risk Score (0-100%)
@@ -108,7 +104,7 @@ Line chart displaying dual metrics:
 - **X-Axis:** Hourly timestamps over 24 hours
 - Real-time trend visualization with smooth interpolation
 
-### 3. Analytics KPI Cards
+### 2. Analytics KPI Cards
 ![Analytics Cards](screenshots/03-analytics-kpi-cards.png)
 Four key performance indicators displayed in card format:
 - **🚨 Flagged Events (24H):** 1,842 transactions (Rate: 14.8%)
@@ -116,7 +112,7 @@ Four key performance indicators displayed in card format:
 - **📊 Avg Risk Score:** 52.3 (Current 24h baseline)
 - **🌍 Regions Affected:** 8 countries (5411 Grocery Stores)
 
-### 4. Velocity Rules & Review Queue
+### 3. Velocity Rules & Review Queue
 ![Rules and Queue](screenshots/04-velocity-rules-review-queue.png)
 
 **Left Panel - Velocity Detection Rules:**
@@ -129,7 +125,7 @@ Four key performance indicators displayed in card format:
 - **Global Shopping Online** - Risk 78 (PENDING_REVIEW, HIGH priority)
 - **Electronics Depot** - Risk 65 (UNDER_INVESTIGATION, MEDIUM priority)
 
-### 5. Fraud Events Table
+### 4. Fraud Events Table
 ![Fraud Events Table](screenshots/05-fraud-events-table.png)
 Complete transaction log with 6 events showing:
 
@@ -142,7 +138,7 @@ Complete transaction log with 6 events showing:
 | Gas Station Express | $65.00 | LOW | NORMAL | — | APPROVED | — |
 | Payment Processor Test | $999.99 | MEDIUM | NORMAL | ROUND_AMOUNT | UNDER_REVIEW | — |
 
-### 6. Filters & Controls Panel
+### 5. Filters & Controls Panel
 ![Filters Panel](screenshots/06-filters-panel.png)
 
 **Risk Level Selector:**
@@ -161,7 +157,7 @@ Complete transaction log with 6 events showing:
 - **Apply Filters** - Cyan button to refresh table with selected criteria
 - **Download Sample Data** - Cyan button to export mock_data.json
 
-### 7. Educational Content Sections
+### 6. Educational Content Sections
 ![Educational Content](screenshots/07-educational-content.png)
 
 **Why This Matters:**
@@ -170,7 +166,7 @@ Complete transaction log with 6 events showing:
 **Who Controls the Rail:**
 "Payment rail governance involves card networks (Visa/Mastercard), issuing banks, merchant acquirers, and third-party processors. Fraud detection is a shared responsibility: networks set velocity thresholds; banks approve/deny transactions; processors execute real-time rules; merchants provide merchant category codes (MCCs) for context."
 
-### 8. Full Dashboard Layout (70/30 Split)
+### 7. Full Dashboard Layout (70/30 Split)
 ![Full Dashboard](screenshots/08-full-dashboard-layout.png)
 Complete dashboard showing:
 - **Left (70%):** Risk trend chart, velocity rules, review queue, fraud events table
