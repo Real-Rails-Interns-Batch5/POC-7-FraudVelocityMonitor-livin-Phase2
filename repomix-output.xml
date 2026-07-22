@@ -94,76 +94,6 @@ README.md
 <files>
 This section contains the contents of the repository's files.
 
-<file path="frontend/components/DeveloperSignature.tsx">
-'use client';
-
-import { X, UserCircle2 } from 'lucide-react';
-
-interface DeveloperSignatureProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const details = [
-  { label: 'ARCHITECT', value: 'LIVIN LINSON' },
-  { label: 'BATCH', value: 'Batch 5 Interns' },
-  { label: 'POC ID', value: '7' },
-  { label: 'GITHUB', value: 'livin00' },
-  { label: 'STACK', value: 'Next.js, FastAPI, Tailwind CSS' },
-];
-
-export default function DeveloperSignature({ isOpen, onClose }: DeveloperSignatureProps) {
-  if (!isOpen) return null;
-
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm"
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-md rounded-2xl border border-rails-border bg-[#0B1117]/90 p-6 shadow-[0_0_40px_rgba(0,0,0,0.45)]"
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-rails-accent/15 text-rails-accent">
-              <UserCircle2 className="h-6 w-6" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-100">Developer Signature</h3>
-              <p className="text-sm text-gray-500">Verified project author details</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="rounded-full border border-rails-border bg-rails-bg/70 p-2 text-gray-400 transition hover:text-rails-accent"
-            aria-label="Close developer signature"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        <div className="mt-6 overflow-hidden rounded-xl border border-rails-border/70">
-          {details.map((item, index) => (
-            <div
-              key={item.label}
-              className={`flex items-center justify-between px-4 py-3 text-sm ${index < details.length - 1 ? 'border-b border-rails-border/70' : ''}`}
-            >
-              <span className="font-semibold uppercase tracking-[0.2em] text-gray-500">{item.label}</span>
-              <span className="text-right text-gray-200">{item.value}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-6 text-center text-sm text-gray-500">
-          © 2026 Infocreon Internship
-        </div>
-      </div>
-    </div>
-  );
-}
-</file>
-
 <file path="backend/data_adapter.py">
 """
 Data Adapter for External Sources
@@ -513,280 +443,11 @@ python-multipart==0.0.6
 cors==1.0.1
 </file>
 
-<file path="frontend/app/globals.css">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  background-color: #021827;
-  color: #e5e7eb;
-  font-family: 'Inter', 'Geist Sans', sans-serif;
-  letter-spacing: -0.01em;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0B1117;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #FBBF24;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #F59E0B;
-}
-
-.gold-glow {
-  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5), inset 0 0 12px rgba(251, 191, 36, 0.1);
-}
-
-.glassmorphism {
-  background: rgba(11, 17, 23, 0.5);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(31, 41, 55, 0.5);
-}
-
-.rails-card {
-  background-color: #0B1117;
-  border: 1px solid #1F2937;
-  border-radius: 8px;
-  padding: 1.25rem;
-}
-
-.rails-button {
-  background-color: #FBBF24;
-  color: #021827;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 0.75rem 1.5rem;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.rails-button:hover {
-  background-color: #F59E0B;
-  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
-}
-
-.rails-button:active {
-  transform: scale(0.98);
-}
-
-.velocity-alert {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-</file>
-
-<file path="frontend/app/layout.tsx">
-import type { Metadata } from 'next'
-import './globals.css'
-
-export const metadata: Metadata = {
-  title: 'Infocreon Internship - FRAUD VELOCITY MONITOR',
-  description: 'Real-time fraud detection and velocity monitoring dashboard for payment systems',
-  keywords: ['fraud detection', 'payment systems', 'real-time analytics', 'velocity monitoring'],
-}
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="en">
-      <body className="bg-rails-bg text-gray-100">
-        {children}
-      </body>
-    </html>
-  )
-}
-</file>
-
-<file path="frontend/app/page.tsx">
-'use client';
-
-import { useEffect, useState } from 'react';
-import DashboardHeader from '@/components/DashboardHeader';
-import IntelligenceSidebar from '@/components/IntelligenceSidebar';
-import MainStage from '@/components/MainStage';
-import { 
-  Analytics, 
-  FraudEvent, 
-  ReviewQueueItem, 
-  RiskScoreTrend, 
-  VelocityRule 
-} from '@/types';
-import { 
-  fraudApi, 
-  analyticsApi, 
-  rulesApi, 
-  reviewApi, 
-  dataApi 
-} from '@/lib/api';
-
-export default function DashboardPage() {
-  // State
-  const [analytics, setAnalytics] = useState<Analytics | null>(null);
-  const [riskTrend, setRiskTrend] = useState<RiskScoreTrend[] | null>(null);
-  const [velocityRules, setVelocityRules] = useState<VelocityRule[] | null>(null);
-  const [reviewQueue, setReviewQueue] = useState<ReviewQueueItem[] | null>(null);
-  const [fraudEvents, setFraudEvents] = useState<FraudEvent[] | null>(null);
-  
-  const [filterRiskLevel, setFilterRiskLevel] = useState<string | null>(null);
-  const [filterStatus, setFilterStatus] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-  // Fetch data from backend
-  const fetchDashboardData = async (riskLevel?: string | null, status?: string | null) => {
-    setIsLoading(true);
-    setError(null);
-    
-    try {
-      // Parallel API calls
-      const [
-        analyticsRes,
-        trendRes,
-        rulesRes,
-        queueRes,
-        eventsRes
-      ] = await Promise.all([
-        analyticsApi.getMetrics().catch(() => null),
-        analyticsApi.getRiskTrend().catch(() => null),
-        rulesApi.getVelocityRules().catch(() => null),
-        reviewApi.getQueue().catch(() => null),
-        fraudApi.getEvents(riskLevel || undefined, status || undefined, 50).catch(() => null)
-      ]);
-
-      if (analyticsRes?.data) setAnalytics(analyticsRes.data);
-      if (trendRes?.data) setRiskTrend(trendRes.data);
-      if (rulesRes?.data) setVelocityRules(rulesRes.data);
-      if (queueRes?.data) setReviewQueue(queueRes.data);
-      if (eventsRes?.data) setFraudEvents(eventsRes.data);
-
-      // Fallback message if API is down
-      if (!analyticsRes && !trendRes && !rulesRes && !queueRes && !eventsRes) {
-        setError('Backend API unavailable. Displaying mock data.');
-      }
-    } catch (err) {
-      console.error('Dashboard fetch error:', err);
-      setError('Failed to load dashboard data. Using mock data.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Initial load
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
-
-  // Handle filter apply
-  const handleApplyFilters = () => {
-    fetchDashboardData(filterRiskLevel, filterStatus);
-  };
-
-  // Handle download sample data
-  const handleDownloadSampleData = async () => {
-    try {
-      const res = await dataApi.downloadSampleData();
-      const dataStr = JSON.stringify(res.data, null, 2);
-      const blob = new Blob([dataStr], { type: 'application/json' });
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `fraud-velocity-monitor-sample-${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (err) {
-      console.error('Download error:', err);
-      alert('Failed to download sample data');
-    }
-  };
-
-  return (
-    <div className="flex h-screen w-full flex-col bg-rails-bg">
-      {/* Header */}
-      <DashboardHeader
-        isSidebarOpen={isSidebarOpen}
-        onToggleSidebar={() => setIsSidebarOpen((prev) => !prev)}
-      />
-
-      {/* Main Content Area */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* Main Stage */}
-        <div className={`transition-all duration-200 ${isSidebarOpen ? 'w-[70%]' : 'w-full'}`}>
-          <MainStage
-            riskTrend={riskTrend}
-            velocityRules={velocityRules}
-            reviewQueue={reviewQueue}
-            fraudEvents={fraudEvents}
-            isLoading={isLoading}
-          />
-        </div>
-
-        {/* Intelligence Sidebar */}
-        {isSidebarOpen && (
-          <div className="w-[30%]">
-            <IntelligenceSidebar
-              analytics={analytics}
-              onRiskLevelChange={setFilterRiskLevel}
-              onStatusChange={setFilterStatus}
-              onApply={handleApplyFilters}
-              onDownload={handleDownloadSampleData}
-            />
-          </div>
-        )}
-      </div>
-
-      {/* Error/Status Banner */}
-      {error && (
-        <div className="px-8 py-3 bg-yellow-500/10 border-t border-yellow-500/30 text-yellow-400 text-sm">
-          ⚠ {error} 
-          <button 
-            onClick={() => fetchDashboardData()}
-            className="ml-4 underline hover:no-underline"
-          >
-            Retry
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
-</file>
-
 <file path="frontend/components/AnalyticsHeader.tsx">
 'use client';
 
 import { Analytics } from '@/types';
-import { formatPercentage } from '@/lib/utils';
+import { formatCurrency, formatPercentage } from '@/lib/utils';
 
 interface MetricsCardProps {
   label: string;
@@ -891,59 +552,67 @@ export default function CollapsibleSection({
 }
 </file>
 
-<file path="frontend/components/DashboardHeader.tsx">
-'use client';
+<file path="frontend/components/DeveloperSignature.tsx">
+import { X, User } from 'lucide-react';
 
-import { AlertCircle, Info, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
-import { useState } from 'react';
-import DeveloperSignature from './DeveloperSignature';
-
-interface DashboardHeaderProps {
-  isSidebarOpen: boolean;
-  onToggleSidebar: () => void;
-}
-
-export default function DashboardHeader({ isSidebarOpen, onToggleSidebar }: DashboardHeaderProps) {
-  const [isSignatureOpen, setIsSignatureOpen] = useState(false);
-
+export default function DeveloperSignature({ onClose }: { onClose: () => void }) {
   return (
-    <>
-      <div className="border-b border-rails-border bg-rails-surface px-8 py-6">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h1 className="mb-1 text-3xl font-bold text-gray-100">
-              Infocreon Internship - FRAUD VELOCITY MONITOR
-            </h1>
-            <p className="text-sm text-gray-500">
-              Real-time Intelligence Dashboard for Payment Systems
-            </p>
-          </div>
-
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <div
+        className="w-[450px] bg-[#0B1117] border border-[#1F2937] rounded-xl shadow-2xl overflow-hidden glassmorphism"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-5 border-b border-[#1F2937]">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setIsSignatureOpen(true)}
-              className="rounded-full border border-rails-border bg-rails-bg/60 p-2 text-gray-400 transition hover:border-rails-accent/60 hover:text-rails-accent"
-              aria-label="Open developer signature"
-            >
-              <Info className="h-5 w-5" />
-            </button>
-            <button
-              onClick={onToggleSidebar}
-              className="rounded-full border border-rails-border bg-rails-bg/60 p-2 text-gray-400 transition hover:border-rails-accent/60 hover:text-rails-accent"
-              aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
-            >
-              {isSidebarOpen ? <PanelLeftClose className="h-5 w-5" /> : <PanelLeftOpen className="h-5 w-5" />}
-            </button>
-            <div className="flex items-center gap-3 rounded border border-rails-accent/30 bg-rails-accent/10 px-4 py-2">
-              <AlertCircle className="h-5 w-5 text-rails-accent" />
-              <span className="text-sm text-rails-accent">Live monitoring</span>
+            <div className="w-10 h-10 rounded-full bg-[#FBBF24]/10 flex items-center justify-center border border-[#FBBF24]/30">
+              <User className="w-5 h-5 text-[#FBBF24]" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-gray-100">Developer Signature</h2>
+              <p className="text-xs text-gray-500">Verified project author details</p>
             </div>
           </div>
+          <button
+            onClick={onClose}
+            className="p-2 text-gray-400 hover:text-white hover:bg-[#1F2937] rounded-md transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="p-5">
+          <ul className="flex flex-col">
+            <li className="flex py-3 border-b border-[#1F2937]">
+              <span className="w-32 text-xs font-semibold text-gray-500 uppercase">ARCHITECT</span>
+              <span className="text-sm text-gray-200">LIVIN LINSON</span>
+            </li>
+            <li className="flex py-3 border-b border-[#1F2937]">
+              <span className="w-32 text-xs font-semibold text-gray-500 uppercase">BATCH</span>
+              <span className="text-sm text-gray-200">Batch 5 Interns</span>
+            </li>
+            <li className="flex py-3 border-b border-[#1F2937]">
+              <span className="w-32 text-xs font-semibold text-gray-500 uppercase">POC ID</span>
+              <span className="text-sm text-gray-200">7</span>
+            </li>
+            <li className="flex py-3 border-b border-[#1F2937]">
+              <span className="w-32 text-xs font-semibold text-gray-500 uppercase">GITHUB</span>
+              <span className="text-sm text-gray-200">livin00</span>
+            </li>
+            <li className="flex py-3 border-b border-[#1F2937]">
+              <span className="w-32 text-xs font-semibold text-gray-500 uppercase">STACK</span>
+              <span className="text-sm text-gray-200">Next.js, FastAPI, Tailwind CSS</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Footer */}
+        <div className="p-4 border-t border-[#1F2937] bg-black/20 text-center">
+          <p className="text-xs text-gray-500">© 2026 Infocreon Internship</p>
         </div>
       </div>
-
-      <DeveloperSignature isOpen={isSignatureOpen} onClose={() => setIsSignatureOpen(false)} />
-    </>
+    </div>
   );
 }
 </file>
@@ -1051,7 +720,7 @@ export default function FilterPanel({
 'use client';
 
 import { FraudEvent } from '@/types';
-import { formatCurrency, formatDate } from '@/lib/utils';
+import { formatCurrency, formatDate, getRiskColor } from '@/lib/utils';
 
 interface FraudEventsTableProps {
   events: FraudEvent[];
@@ -1105,7 +774,7 @@ export default function FraudEventsTable({
           </tr>
         </thead>
         <tbody>
-          {events.map((event) => (
+          {events.map((event, idx) => (
             <tr 
               key={event.id}
               className="border-b border-rails-border/30 hover:bg-rails-border/20 transition-colors"
@@ -1161,100 +830,6 @@ export default function FraudEventsTable({
           ))}
         </tbody>
       </table>
-    </div>
-  );
-}
-</file>
-
-<file path="frontend/components/IntelligenceSidebar.tsx">
-'use client';
-
-import { Analytics } from '@/types';
-import AnalyticsHeader from './AnalyticsHeader';
-import FilterPanel from './FilterPanel';
-
-interface IntelligenceSidebarProps {
-  analytics: Analytics | null;
-  onRiskLevelChange: (level: string | null) => void;
-  onStatusChange: (status: string | null) => void;
-  onApply: () => void;
-  onDownload: () => void;
-}
-
-export default function IntelligenceSidebar({
-  analytics,
-  onRiskLevelChange,
-  onStatusChange,
-  onApply,
-  onDownload
-}: IntelligenceSidebarProps) {
-  return (
-    <div className="w-[30%] bg-rails-bg border-l border-rails-border overflow-y-auto flex flex-col">
-      <div className="flex-1 p-6 space-y-6">
-        
-        {/* Section A: Title & High-level Metric */}
-        <div className="pb-4 border-b border-rails-border">
-          <h2 className="mb-1 text-xl font-bold text-rails-accent">
-            Infocreon Internship
-          </h2>
-          <p className="text-xs text-gray-500">
-            Fraud Velocity Monitor • Real-time fraud detection for payment systems
-          </p>
-        </div>
-
-        {/* Section B: Analytics Metrics */}
-        {analytics && (
-          <div>
-            <AnalyticsHeader analytics={analytics} />
-          </div>
-        )}
-
-        {/* Section B: Why This Matters */}
-        <div className="rails-card">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-semibold">
-            Why This Matters
-          </div>
-          <div className="text-sm text-gray-300 leading-relaxed">
-            Fraud velocity rules detect abnormal transaction patterns within seconds. High-velocity 
-            attacks—multiple transactions in short time windows—are a primary fraud vector across 
-            payment rails. This system monitors real-time transaction streams and flags velocity 
-            breaches before cards are compromised at scale.
-          </div>
-        </div>
-
-        {/* Section C: Who Controls the Rail */}
-        <div className="rails-card">
-          <div className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-semibold">
-            Who Controls the Rail
-          </div>
-          <div className="text-sm text-gray-300 leading-relaxed">
-            Payment rail governance involves card networks (Visa/Mastercard), issuing banks, 
-            merchant acquirers, and third-party processors. Fraud detection is a shared responsibility: 
-            networks set velocity thresholds; banks approve/deny transactions; processors execute 
-            real-time rules; merchants provide merchant category codes (MCCs) for context.
-          </div>
-        </div>
-
-        {/* Section D: Functional Filters */}
-        <div>
-          <FilterPanel 
-            onRiskLevelChange={onRiskLevelChange}
-            onStatusChange={onStatusChange}
-            onApply={onApply}
-          />
-        </div>
-
-      </div>
-
-      {/* Section E: Download Button */}
-      <div className="p-6 border-t border-rails-border">
-        <button
-          onClick={onDownload}
-          className="w-full rails-button justify-center"
-        >
-          ↓ Download Sample Data
-        </button>
-      </div>
     </div>
   );
 }
@@ -1358,6 +933,7 @@ export default function MainStage({
 'use client';
 
 import { ReviewQueueItem } from '@/types';
+import { formatDate } from '@/lib/utils';
 
 interface ReviewQueueProps {
   items: ReviewQueueItem[];
@@ -1758,34 +1334,6 @@ module.exports = {
     autoprefixer: {},
   },
 }
-</file>
-
-<file path="frontend/tailwind.config.ts">
-import type { Config } from 'tailwindcss'
-
-const config: Config = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      colors: {
-        'rails-bg': '#021827',
-        'rails-surface': '#0B1117',
-        'rails-accent': '#FBBF24',
-        'rails-accent-secondary': '#F59E0B',
-        'rails-border': '#1F2937',
-      },
-      spacing: {
-        'sidebar-width': '30%',
-        'main-width': '70%',
-      },
-    },
-  },
-  plugins: [],
-}
-export default config
 </file>
 
 <file path=".gitignore">
@@ -2888,6 +2436,420 @@ if __name__ == "__main__":
     )
 </file>
 
+<file path="frontend/app/globals.css">
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background-color: #021827;
+  color: #e5e7eb;
+  font-family: 'Inter', 'Geist Sans', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FBBF24;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E0B;
+}
+
+.gold-glow {
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5), inset 0 0 12px rgba(251, 191, 36, 0.1);
+}
+
+.glassmorphism {
+  background: rgba(11, 17, 23, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(31, 41, 55, 0.5);
+}
+
+.rails-card {
+  background-color: #0B1117;
+  border: 1px solid #1F2937;
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.rails-button {
+  background-color: #FBBF24;
+  color: #021827;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.rails-button:hover {
+  background-color: #F59E0B;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+}
+
+.rails-button:active {
+  transform: scale(0.98);
+}
+
+.velocity-alert {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+</file>
+
+<file path="frontend/app/layout.tsx">
+import type { Metadata } from 'next'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'Infocreon Internship - FRAUD VELOCITY MONITOR',
+  description: 'Real-time fraud detection and velocity monitoring dashboard for payment systems',
+  keywords: ['fraud detection', 'payment systems', 'real-time analytics', 'velocity monitoring'],
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body className="bg-rails-bg text-gray-100">
+        {children}
+      </body>
+    </html>
+  )
+}
+</file>
+
+<file path="frontend/app/page.tsx">
+'use client';
+
+import { useEffect, useState } from 'react';
+import DashboardHeader from '@/components/DashboardHeader';
+import IntelligenceSidebar from '@/components/IntelligenceSidebar';
+import MainStage from '@/components/MainStage';
+import { 
+  Analytics, 
+  FraudEvent, 
+  ReviewQueueItem, 
+  RiskScoreTrend, 
+  VelocityRule 
+} from '@/types';
+import { 
+  fraudApi, 
+  analyticsApi, 
+  rulesApi, 
+  reviewApi, 
+  dataApi 
+} from '@/lib/api';
+
+export default function DashboardPage() {
+  // State
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [analytics, setAnalytics] = useState<Analytics | null>(null);
+  const [riskTrend, setRiskTrend] = useState<RiskScoreTrend[] | null>(null);
+  const [velocityRules, setVelocityRules] = useState<VelocityRule[] | null>(null);
+  const [reviewQueue, setReviewQueue] = useState<ReviewQueueItem[] | null>(null);
+  const [fraudEvents, setFraudEvents] = useState<FraudEvent[] | null>(null);
+  
+  const [filterRiskLevel, setFilterRiskLevel] = useState<string | null>(null);
+  const [filterStatus, setFilterStatus] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch data from backend
+  const fetchDashboardData = async (riskLevel?: string | null, status?: string | null) => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      // Parallel API calls
+      const [
+        analyticsRes,
+        trendRes,
+        rulesRes,
+        queueRes,
+        eventsRes
+      ] = await Promise.all([
+        analyticsApi.getMetrics().catch(() => null),
+        analyticsApi.getRiskTrend().catch(() => null),
+        rulesApi.getVelocityRules().catch(() => null),
+        reviewApi.getQueue().catch(() => null),
+        fraudApi.getEvents(riskLevel || undefined, status || undefined, 50).catch(() => null)
+      ]);
+
+      if (analyticsRes?.data) setAnalytics(analyticsRes.data);
+      if (trendRes?.data) setRiskTrend(trendRes.data);
+      if (rulesRes?.data) setVelocityRules(rulesRes.data);
+      if (queueRes?.data) setReviewQueue(queueRes.data);
+      if (eventsRes?.data) setFraudEvents(eventsRes.data);
+
+      // Fallback message if API is down
+      if (!analyticsRes && !trendRes && !rulesRes && !queueRes && !eventsRes) {
+        setError('Backend API unavailable. Displaying mock data.');
+      }
+    } catch (err) {
+      console.error('Dashboard fetch error:', err);
+      setError('Failed to load dashboard data. Using mock data.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Initial load
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  // Handle filter apply
+  const handleApplyFilters = () => {
+    fetchDashboardData(filterRiskLevel, filterStatus);
+  };
+
+  // Handle download sample data
+  const handleDownloadSampleData = async () => {
+    try {
+      const res = await dataApi.downloadSampleData();
+      const dataStr = JSON.stringify(res.data, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `fraud-velocity-monitor-sample-${new Date().toISOString().split('T')[0]}.json`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Download error:', err);
+      alert('Failed to download sample data');
+    }
+  };
+
+  return (
+    <div className="w-full h-screen bg-rails-bg flex flex-col">
+      {/* Header */}
+      <DashboardHeader 
+        isSidebarOpen={isSidebarOpen}
+        onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
+
+      {/* Main Content Area: 70% Main Stage + 30% Sidebar */}
+      <div className="flex flex-1 overflow-hidden">
+        
+        {/* Main Stage (70%) */}
+        <div className={`${isSidebarOpen ? 'w-[70%]' : 'w-full'} flex flex-col transition-all duration-300`}>
+          <MainStage
+            riskTrend={riskTrend}
+            velocityRules={velocityRules}
+            reviewQueue={reviewQueue}
+            fraudEvents={fraudEvents}
+            isLoading={isLoading}
+          />
+        </div>
+
+        {/* Intelligence Sidebar (30%) */}
+        {isSidebarOpen && (
+          <IntelligenceSidebar
+            analytics={analytics}
+            onRiskLevelChange={setFilterRiskLevel}
+            onStatusChange={setFilterStatus}
+            onApply={handleApplyFilters}
+            onDownload={handleDownloadSampleData}
+          />
+        )}
+      </div>
+
+      {/* Error/Status Banner */}
+      {error && (
+        <div className="px-8 py-3 bg-yellow-500/10 border-t border-yellow-500/30 text-yellow-400 text-sm">
+          ⚠ {error} 
+          <button 
+            onClick={() => fetchDashboardData()}
+            className="ml-4 underline hover:no-underline"
+          >
+            Retry
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/components/DashboardHeader.tsx">
+'use client';
+
+import { Menu, X, Info } from 'lucide-react';
+import { useState } from 'react';
+import DeveloperSignature from './DeveloperSignature';
+
+export default function DashboardHeader({ 
+  isSidebarOpen = true, 
+  onToggleSidebar 
+}: { 
+  isSidebarOpen?: boolean; 
+  onToggleSidebar?: () => void;
+} = {}) {
+  const [isSignatureOpen, setIsSignatureOpen] = useState(false);
+  return (
+    <div className="bg-rails-surface border-b border-rails-border px-8 py-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-100 mb-1">
+            Infocreon Internship - FRAUD VELOCITY MONITOR
+          </h1>
+          <p className="text-sm text-gray-500">
+            Real-time Intelligence Dashboard for Payment Systems
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+
+          <button 
+            onClick={() => setIsSignatureOpen(true)}
+            className="p-2 rounded hover:bg-rails-border transition-colors text-gray-400 hover:text-white"
+          >
+            <Info className="w-5 h-5" />
+          </button>
+          {onToggleSidebar && (
+            <button 
+              onClick={onToggleSidebar}
+              className="p-2 rounded hover:bg-rails-border transition-colors text-gray-400 hover:text-white"
+            >
+              {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          )}
+        </div>
+      </div>
+      {isSignatureOpen && (
+        <DeveloperSignature onClose={() => setIsSignatureOpen(false)} />
+      )}
+    </div>
+  );
+}
+</file>
+
+<file path="frontend/components/IntelligenceSidebar.tsx">
+'use client';
+
+import { Analytics } from '@/types';
+import AnalyticsHeader from './AnalyticsHeader';
+import FilterPanel from './FilterPanel';
+
+interface IntelligenceSidebarProps {
+  analytics: Analytics | null;
+  onRiskLevelChange: (level: string | null) => void;
+  onStatusChange: (status: string | null) => void;
+  onApply: () => void;
+  onDownload: () => void;
+}
+
+export default function IntelligenceSidebar({
+  analytics,
+  onRiskLevelChange,
+  onStatusChange,
+  onApply,
+  onDownload
+}: IntelligenceSidebarProps) {
+  return (
+    <div className="w-[30%] bg-rails-bg border-l border-rails-border overflow-y-auto flex flex-col">
+      <div className="flex-1 p-6 space-y-6">
+        
+        {/* Section A: Title & High-level Metric */}
+        <div className="pb-4 border-b border-rails-border">
+          <h2 className="text-xl font-bold text-rails-accent mb-1">
+            Infocreon Internship - FRAUD VELOCITY MONITOR
+          </h2>
+          <p className="text-xs text-gray-500">
+            Real-time fraud detection for payment systems
+          </p>
+        </div>
+
+        {/* Section B: Analytics Metrics */}
+        {analytics && (
+          <div>
+            <AnalyticsHeader analytics={analytics} />
+          </div>
+        )}
+
+        {/* Section B: Why This Matters */}
+        <div className="rails-card">
+          <div className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-semibold">
+            Why This Matters
+          </div>
+          <div className="text-sm text-gray-300 leading-relaxed">
+            Fraud velocity rules detect abnormal transaction patterns within seconds. High-velocity 
+            attacks—multiple transactions in short time windows—are a primary fraud vector across 
+            payment rails. This system monitors real-time transaction streams and flags velocity 
+            breaches before cards are compromised at scale.
+          </div>
+        </div>
+
+        {/* Section C: Who Controls the Rail */}
+        <div className="rails-card">
+          <div className="text-xs text-gray-500 uppercase tracking-wider mb-3 font-semibold">
+            Who Controls the Rail
+          </div>
+          <div className="text-sm text-gray-300 leading-relaxed">
+            Payment rail governance involves card networks (Visa/Mastercard), issuing banks, 
+            merchant acquirers, and third-party processors. Fraud detection is a shared responsibility: 
+            networks set velocity thresholds; banks approve/deny transactions; processors execute 
+            real-time rules; merchants provide merchant category codes (MCCs) for context.
+          </div>
+        </div>
+
+        {/* Section D: Functional Filters */}
+        <div>
+          <FilterPanel 
+            onRiskLevelChange={onRiskLevelChange}
+            onStatusChange={onStatusChange}
+            onApply={onApply}
+          />
+        </div>
+
+      </div>
+
+      {/* Section E: Download Button */}
+      <div className="p-6 border-t border-rails-border">
+        <button
+          onClick={onDownload}
+          className="w-full rails-button justify-center"
+        >
+          ↓ Download Sample Data
+        </button>
+      </div>
+    </div>
+  );
+}
+</file>
+
 <file path="frontend/components/RiskTrendChart.tsx">
 'use client';
 
@@ -2918,14 +2880,14 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
             style={{ fontSize: '12px' }}
           />
           <YAxis 
-            stroke="#FBBF24" 
+            stroke="#38BDF8" 
             style={{ fontSize: '11px' }}
             domain={[0, 100]}
             width={35}
           />
           <YAxis 
             yAxisId="right"
-            stroke="#F59E0B" 
+            stroke="#818CF8" 
             style={{ fontSize: '11px' }}
             width={35}
           />
@@ -2935,12 +2897,12 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
               border: '1px solid #1F2937',
               borderRadius: '6px'
             }}
-            labelStyle={{ color: '#FBBF24' }}
+            labelStyle={{ color: '#38BDF8' }}
           />
           <Line 
             type="monotone" 
             dataKey="avg_score" 
-            stroke="#FBBF24" 
+            stroke="#38BDF8" 
             strokeWidth={2}
             dot={false}
             name="Avg Risk Score"
@@ -2948,7 +2910,7 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
           <Line 
             type="monotone" 
             dataKey="high_risk_count" 
-            stroke="#F59E0B" 
+            stroke="#818CF8" 
             strokeWidth={2}
             dot={false}
             name="High Risk Count"
@@ -2959,6 +2921,34 @@ export default function RiskTrendChart({ data }: RiskTrendChartProps) {
     </div>
   );
 }
+</file>
+
+<file path="frontend/tailwind.config.ts">
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+  content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'rails-bg': '#021827',
+        'rails-surface': '#0B1117',
+        'rails-accent': '#FBBF24',
+        'rails-accent-secondary': '#F59E0B',
+        'rails-border': '#1F2937',
+      },
+      spacing: {
+        'sidebar-width': '30%',
+        'main-width': '70%',
+      },
+    },
+  },
+  plugins: [],
+}
+export default config
 </file>
 
 <file path="frontend/tsconfig.json">
