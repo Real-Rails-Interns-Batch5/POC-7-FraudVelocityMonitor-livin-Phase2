@@ -26,7 +26,7 @@ export default function IntelligenceSidebar({
         {/* Section A: Title & High-level Metric */}
         <div className="pb-4 border-b border-rails-border">
           <h2 className="text-xl font-bold text-rails-accent mb-1">
-            Fraud Velocity Monitor
+            Infocreon Internship - FRAUD VELOCITY MONITOR
           </h2>
           <p className="text-xs text-gray-500">
             Real-time fraud detection for payment systems

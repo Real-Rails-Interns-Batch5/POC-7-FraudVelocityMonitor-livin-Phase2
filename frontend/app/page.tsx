@@ -21,6 +21,7 @@ import {
 
 export default function DashboardPage() {
   // State
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [riskTrend, setRiskTrend] = useState<RiskScoreTrend[] | null>(null);
   const [velocityRules, setVelocityRules] = useState<VelocityRule[] | null>(null);
@@ -104,28 +105,35 @@ export default function DashboardPage() {
   return (
     <div className="w-full h-screen bg-rails-bg flex flex-col">
       {/* Header */}
-      <DashboardHeader />
+      <DashboardHeader 
+        isSidebarOpen={isSidebarOpen}
+        onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+      />
 
       {/* Main Content Area: 70% Main Stage + 30% Sidebar */}
       <div className="flex flex-1 overflow-hidden">
         
         {/* Main Stage (70%) */}
-        <MainStage
-          riskTrend={riskTrend}
-          velocityRules={velocityRules}
-          reviewQueue={reviewQueue}
-          fraudEvents={fraudEvents}
-          isLoading={isLoading}
-        />
+        <div className={`${isSidebarOpen ? 'w-[70%]' : 'w-full'} flex flex-col transition-all duration-300`}>
+          <MainStage
+            riskTrend={riskTrend}
+            velocityRules={velocityRules}
+            reviewQueue={reviewQueue}
+            fraudEvents={fraudEvents}
+            isLoading={isLoading}
+          />
+        </div>
 
         {/* Intelligence Sidebar (30%) */}
-        <IntelligenceSidebar
-          analytics={analytics}
-          onRiskLevelChange={setFilterRiskLevel}
-          onStatusChange={setFilterStatus}
-          onApply={handleApplyFilters}
-          onDownload={handleDownloadSampleData}
-        />
+        {isSidebarOpen && (
+          <IntelligenceSidebar
+            analytics={analytics}
+            onRiskLevelChange={setFilterRiskLevel}
+            onStatusChange={setFilterStatus}
+            onApply={handleApplyFilters}
+            onDownload={handleDownloadSampleData}
+          />
+        )}
       </div>
 
       {/* Error/Status Banner */}

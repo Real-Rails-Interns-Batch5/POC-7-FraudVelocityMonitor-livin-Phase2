@@ -8,10 +8,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'rails-bg': '#030712',
+        'rails-bg': '#021827',
         'rails-surface': '#0B1117',
-        'rails-accent': '#38BDF8',
-        'rails-accent-secondary': '#818CF8',
+        'rails-accent': '#FBBF24',
+        'rails-accent-secondary': '#F59E0B',
         'rails-border': '#1F2937',
       },
       spacing: {
