@@ -1,7 +1,7 @@
 'use client';
 
 import { Analytics } from '@/types';
-import { formatCurrency, formatPercentage } from '@/lib/utils';
+import { formatPercentage } from '@/lib/utils';
 
 interface MetricsCardProps {
   label: string;

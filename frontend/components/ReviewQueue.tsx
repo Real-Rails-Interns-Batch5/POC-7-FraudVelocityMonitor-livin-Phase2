@@ -1,7 +1,6 @@
 'use client';
 
 import { ReviewQueueItem } from '@/types';
-import { formatDate } from '@/lib/utils';
 
 interface ReviewQueueProps {
   items: ReviewQueueItem[];

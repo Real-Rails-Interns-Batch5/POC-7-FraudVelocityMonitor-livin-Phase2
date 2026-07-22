@@ -1,7 +1,7 @@
 'use client';
 
 import { FraudEvent } from '@/types';
-import { formatCurrency, formatDate, getRiskColor } from '@/lib/utils';
+import { formatCurrency, formatDate } from '@/lib/utils';
 
 interface FraudEventsTableProps {
   events: FraudEvent[];
@@ -55,7 +55,7 @@ export default function FraudEventsTable({
           </tr>
         </thead>
         <tbody>
-          {events.map((event, idx) => (
+          {events.map((event) => (
             <tr 
               key={event.id}
               className="border-b border-rails-border/30 hover:bg-rails-border/20 transition-colors"
