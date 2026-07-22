@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: rails_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATA_API_KEY=${DATA_API_KEY}
+    networks:
+      - rails_network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: rails_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      - NEXT_PUBLIC_MAPBOX_API_KEY=${MAPBOX_API_KEY}
+    networks:
+      - rails_network
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+networks:
+  rails_network:
+    driver: bridge
