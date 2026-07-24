@@ -1,9 +1,7 @@
-import axios from 'axios';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: API_URL,
+  baseURL: "https://fraudvelocitymonitor-backend.onrender.com",
   timeout: 5000,
 });
 
@@ -14,26 +12,26 @@ export const fraudApi = {
     if (riskLevel) params.append('risk_level', riskLevel);
     if (status) params.append('status', status);
     if (limit) params.append('limit', limit.toString());
-    
+
     return apiClient.get(`/api/fraud-events?${params.toString()}`);
   },
-  
-  getEvent: (eventId: string) => 
+
+  getEvent: (eventId: string) =>
     apiClient.get(`/api/fraud-events/${eventId}`),
-  
+
   approveEvent: (eventId: string) =>
     apiClient.post(`/api/fraud-events/${eventId}/approve`),
-  
+
   blockEvent: (eventId: string) =>
     apiClient.post(`/api/fraud-events/${eventId}/block`),
 };
 
 // Analytics
 export const analyticsApi = {
-  getMetrics: () => 
+  getMetrics: () =>
     apiClient.get('/api/analytics'),
-  
-  getRiskTrend: () => 
+
+  getRiskTrend: () =>
     apiClient.get('/api/risk-score-trend'),
 };
 
@@ -51,7 +49,7 @@ export const reviewApi = {
     const params = new URLSearchParams();
     if (priority) params.append('priority', priority);
     if (status) params.append('status', status);
-    
+
     return apiClient.get(`/api/review-queue?${params.toString()}`);
   },
 };
